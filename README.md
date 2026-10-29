@@ -1,6 +1,6 @@
-# getvilaapp.github.io
+# getvila.app
 
-Site do Vila: https://getvilaapp.github.io
+Site do Vila: https://getvila.app (o domínio fica no arquivo `CNAME`; o DNS está na GoDaddy)
 
 Página estática, sem build. Tudo está no `index.html` (estilo e script inline); as imagens ficam em
 `img/` e as fontes em `fonts/`. O GitHub Pages publica a branch `main` direto da raiz.
