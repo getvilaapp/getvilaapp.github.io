@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy · Vila</title>
+<meta name="description" content="How Vila uses your data: what we collect, why, who sees it and how to request access, correction or deletion.">
+<link rel="icon" type="image/png" href="../img/icone.png">
+<link rel="canonical" href="https://getvila.app/privacy/">
+<link rel="alternate" hreflang="pt-BR" href="https://getvila.app/privacidade/">
+<link rel="alternate" hreflang="en" href="https://getvila.app/privacy/">
+<style>
+@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(../fonts/atkinson-hyperlegible-next-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; }
+:root {
+  --bg: #ffffff; --tile: #f3f3f1; --ink: #1b1c1e; --ink-2: #5c5f63; --ink-3: #6e7175; --line: #e3e3df;
+  --link: #5a4392; --accent: #6e56a6; --accent-hover: #5f4895; --on-accent: #ffffff; --nav: rgba(255, 255, 255, 0.76);
+  --casca: "Atkinson Hyperlegible Next", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --gutter-l: max(20px, env(safe-area-inset-left, 0px)); --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0c0e; --tile: #17181b; --ink: #ececee; --ink-2: #a6a8ae; --ink-3: #8d9096; --line: #2a2b2f;
+    --link: #bba9ec; --accent: #7b63ba; --accent-hover: #8a73c7; --nav: rgba(11, 12, 14, 0.74); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c0e; --tile: #17181b; --ink: #ececee; --ink-2: #a6a8ae; --ink-3: #8d9096; --line: #2a2b2f;
+  --link: #bba9ec; --accent: #7b63ba; --accent-hover: #8a73c7; --nav: rgba(11, 12, 14, 0.74); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--casca); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.nav { position: sticky; top: 0; z-index: 10; background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+.nav .wrap { max-width: 1040px; display: flex; align-items: center; gap: 16px; height: 52px; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; font-size: 19px; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 22px; height: auto; }
+.nav .lang { margin-left: auto; font-size: 13px; }
+main { padding-block: 64px 96px; }
+.eyebrow { font-size: 17px; font-weight: 700; color: var(--accent); margin: 0; }
+h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 800; margin: 8px 0 0; text-wrap: balance; }
+.updated { color: var(--ink-3); font-size: 15px; margin: 16px 0 0; }
+.lede { font-size: 20px; color: var(--ink-2); margin: 28px 0 0; }
+.toc { margin: 32px 0 0; padding: 20px 24px; background: var(--tile); border-radius: 18px; columns: 2 240px; column-gap: 32px; font-size: 15px; }
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { break-inside: avoid; padding: 2px 0; }
+h2 { font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 800; margin: 56px 0 0; scroll-margin-top: 72px; }
+h3 { font-size: 19px; font-weight: 700; margin: 28px 0 0; }
+p, ul { margin: 12px 0 0; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+li strong, p strong { font-weight: 700; }
+.callout { margin: 20px 0 0; padding: 18px 22px; border-radius: 18px; background: var(--tile); border-left: 4px solid var(--accent); }
+.callout p:first-child { margin-top: 0; }
+footer { padding-block: 28px 48px; font-size: 13px; color: var(--ink-3); background: var(--tile); }
+footer .wrap { max-width: 1040px; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer a { color: var(--ink-2); }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Vila">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Vila, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 17" aria-hidden="true" shape-rendering="crispEdges" ><rect x="7" y="0" width="4" height="1" fill="#5a3a10"/><rect x="6" y="1" width="1" height="1" fill="#5a3a10"/><rect x="7" y="1" width="3" height="1" fill="#ffdc6e"/><rect x="10" y="1" width="1" height="1" fill="#f5b921"/><rect x="11" y="1" width="1" height="1" fill="#5a3a10"/><rect x="5" y="2" width="1" height="1" fill="#5a3a10"/><rect x="6" y="2" width="2" height="1" fill="#ffdc6e"/><rect x="8" y="2" width="4" height="1" fill="#f5b921"/><rect x="12" y="2" width="1" height="1" fill="#5a3a10"/><rect x="3" y="3" width="3" height="1" fill="#5a3a10"/><rect x="6" y="3" width="1" height="1" fill="#ffdc6e"/><rect x="7" y="3" width="5" height="1" fill="#f5b921"/><rect x="12" y="3" width="3" height="1" fill="#5a3a10"/><rect x="2" y="4" width="1" height="1" fill="#5a3a10"/><rect x="3" y="4" width="2" height="1" fill="#ffdc6e"/><rect x="5" y="4" width="1" height="1" fill="#d9920f"/><rect x="6" y="4" width="1" height="1" fill="#ffdc6e"/><rect x="7" y="4" width="4" height="1" fill="#f5b921"/><rect x="11" y="4" width="1" height="1" fill="#d9920f"/><rect x="12" y="4" width="3" height="1" fill="#ffdc6e"/><rect x="15" y="4" width="1" height="1" fill="#5a3a10"/><rect x="1" y="5" width="1" height="1" fill="#5a3a10"/><rect x="2" y="5" width="3" height="1" fill="#ffdc6e"/><rect x="5" y="5" width="2" height="1" fill="#d9920f"/><rect x="7" y="5" width="4" height="1" fill="#f5b921"/><rect x="11" y="5" width="1" height="1" fill="#d9920f"/><rect x="12" y="5" width="2" height="1" fill="#ffdc6e"/><rect x="14" y="5" width="2" height="1" fill="#f5b921"/><rect x="16" y="5" width="1" height="1" fill="#5a3a10"/><rect x="0" y="6" width="1" height="1" fill="#5a3a10"/><rect x="1" y="6" width="2" height="1" fill="#ffdc6e"/><rect x="3" y="6" width="3" height="1" fill="#f5b921"/><rect x="6" y="6" width="2" height="1" fill="#d9920f"/><rect x="8" y="6" width="1" height="1" fill="#f5b921"/><rect x="9" y="6" width="1" height="1" fill="#c8472b"/><rect x="10" y="6" width="1" height="1" fill="#d9920f"/><rect x="11" y="6" width="5" height="1" fill="#f5b921"/><rect x="16" y="6" width="1" height="1" fill="#d9920f"/><rect x="17" y="6" width="1" height="1" fill="#5a3a10"/><rect x="0" y="7" width="1" height="1" fill="#5a3a10"/><rect x="1" y="7" width="1" height="1" fill="#ffdc6e"/><rect x="2" y="7" width="5" height="1" fill="#f5b921"/><rect x="7" y="7" width="4" height="1" fill="#d9920f"/><rect x="11" y="7" width="5" height="1" fill="#f5b921"/><rect x="16" y="7" width="1" height="1" fill="#d9920f"/><rect x="17" y="7" width="1" height="1" fill="#5a3a10"/><rect x="0" y="8" width="1" height="1" fill="#5a3a10"/><rect x="1" y="8" width="1" height="1" fill="#ffdc6e"/><rect x="2" y="8" width="4" height="1" fill="#f5b921"/><rect x="6" y="8" width="1" height="1" fill="#c8472b"/><rect x="7" y="8" width="1" height="1" fill="#d9920f"/><rect x="8" y="8" width="2" height="1" fill="#9a5b00"/><rect x="10" y="8" width="1" height="1" fill="#d9920f"/><rect x="11" y="8" width="1" height="1" fill="#c8472b"/><rect x="12" y="8" width="3" height="1" fill="#f5b921"/><rect x="15" y="8" width="2" height="1" fill="#d9920f"/><rect x="17" y="8" width="1" height="1" fill="#5a3a10"/><rect x="1" y="9" width="1" height="1" fill="#5a3a10"/><rect x="2" y="9" width="2" height="1" fill="#f5b921"/><rect x="4" y="9" width="4" height="1" fill="#d9920f"/><rect x="8" y="9" width="2" height="1" fill="#9a5b00"/><rect x="10" y="9" width="1" height="1" fill="#d9920f"/><rect x="11" y="9" width="1" height="1" fill="#f5b921"/><rect x="12" y="9" width="4" height="1" fill="#d9920f"/><rect x="16" y="9" width="1" height="1" fill="#5a3a10"/><rect x="2" y="10" width="1" height="1" fill="#5a3a10"/><rect x="3" y="10" width="1" height="1" fill="#d9920f"/><rect x="4" y="10" width="2" height="1" fill="#ffdc6e"/><rect x="6" y="10" width="1" height="1" fill="#f5b921"/><rect x="7" y="10" width="4" height="1" fill="#d9920f"/><rect x="11" y="10" width="2" height="1" fill="#f5b921"/><rect x="13" y="10" width="2" height="1" fill="#d9920f"/><rect x="15" y="10" width="1" height="1" fill="#5a3a10"/><rect x="2" y="11" width="1" height="1" fill="#5a3a10"/><rect x="3" y="11" width="2" height="1" fill="#ffdc6e"/><rect x="5" y="11" width="2" height="1" fill="#f5b921"/><rect x="7" y="11" width="1" height="1" fill="#c8472b"/><rect x="8" y="11" width="1" height="1" fill="#f5b921"/><rect x="9" y="11" width="1" height="1" fill="#ffdc6e"/><rect x="10" y="11" width="1" height="1" fill="#c8472b"/><rect x="11" y="11" width="4" height="1" fill="#f5b921"/><rect x="15" y="11" width="1" height="1" fill="#5a3a10"/><rect x="2" y="12" width="1" height="1" fill="#5a3a10"/><rect x="3" y="12" width="1" height="1" fill="#ffdc6e"/><rect x="4" y="12" width="4" height="1" fill="#f5b921"/><rect x="8" y="12" width="1" height="1" fill="#d9920f"/><rect x="9" y="12" width="1" height="1" fill="#ffdc6e"/><rect x="10" y="12" width="4" height="1" fill="#f5b921"/><rect x="14" y="12" width="1" height="1" fill="#d9920f"/><rect x="15" y="12" width="1" height="1" fill="#5a3a10"/><rect x="2" y="13" width="1" height="1" fill="#5a3a10"/><rect x="3" y="13" width="1" height="1" fill="#ffdc6e"/><rect x="4" y="13" width="4" height="1" fill="#f5b921"/><rect x="8" y="13" width="1" height="1" fill="#d9920f"/><rect x="9" y="13" width="5" height="1" fill="#f5b921"/><rect x="14" y="13" width="1" height="1" fill="#d9920f"/><rect x="15" y="13" width="1" height="1" fill="#5a3a10"/><rect x="2" y="14" width="1" height="1" fill="#5a3a10"/><rect x="3" y="14" width="4" height="1" fill="#f5b921"/><rect x="7" y="14" width="2" height="1" fill="#d9920f"/><rect x="9" y="14" width="4" height="1" fill="#f5b921"/><rect x="13" y="14" width="2" height="1" fill="#d9920f"/><rect x="15" y="14" width="1" height="1" fill="#5a3a10"/><rect x="3" y="15" width="1" height="1" fill="#5a3a10"/><rect x="4" y="15" width="1" height="1" fill="#f5b921"/><rect x="5" y="15" width="3" height="1" fill="#d9920f"/><rect x="8" y="15" width="2" height="1" fill="#5a3a10"/><rect x="10" y="15" width="1" height="1" fill="#f5b921"/><rect x="11" y="15" width="3" height="1" fill="#d9920f"/><rect x="14" y="15" width="1" height="1" fill="#5a3a10"/><rect x="4" y="16" width="4" height="1" fill="#5a3a10"/><rect x="10" y="16" width="4" height="1" fill="#5a3a10"/></svg><span>Vila</span></a>
+    <a class="lang" href="../privacidade/" hreflang="pt-BR" lang="pt-BR">Ler em português</a>
+  </div>
+</nav>
+<main class="wrap">
+<p class="eyebrow">Vila</p>
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated October 28, 2026</p>
+<p class="lede">Vila is a pixel-art virtual office: the team walks around a map, sits at their desks and talks by voice with whoever is nearby. This page explains what data Vila uses, why, who can see it, and how to ask us to access, correct or delete it. The <a href="../privacidade/" hreflang="pt-BR">Portuguese version</a> is the reference text.</p>
+
+<nav class="toc" aria-label="On this page">
+  <ol>
+    <li><a href="#who">Who is responsible</a></li>
+    <li><a href="#data">What data Vila uses</a></li>
+    <li><a href="#google">Sign in with Google</a></li>
+    <li><a href="#use">How we use it</a></li>
+    <li><a href="#visibility">Who sees what</a></li>
+    <li><a href="#sharing">Who we share it with</a></li>
+    <li><a href="#retention">How long we keep it</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#cookies">Cookies</a></li>
+    <li><a href="#rights">Your rights</a></li>
+    <li><a href="#changes">Changes to this policy</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</nav>
+
+<h2 id="who">1. Who is responsible</h2>
+<p>Vila is developed and operated by <strong>Marcos Junior</strong>, the controller of the personal data processed by the service under Brazil's General Data Protection Law (Lei nº 13.709/2018, "LGPD"). For anything about this policy, email <a href="mailto:contato@getvila.app">contato@getvila.app</a>.</p>
+<p>This policy covers Vila on the web, the Vila app for Mac and this website (getvila.app).</p>
+
+<h2 id="data">2. What data Vila uses</h2>
+<h3>Account</h3>
+<ul>
+  <li><strong>Name and email address</strong>, to create your account and show your team who you are.</li>
+  <li><strong>Your Google account identifier</strong> and its domain (for example, your company's domain), when you sign in with Google. The domain is used to check whether you may join the organization.</li>
+  <li><strong>Password</strong>, only if you join through an invite with a password. We store only a hashed version, never the password itself.</li>
+  <li><strong>Your role in the organization</strong> (member or administrator) and your team.</li>
+</ul>
+<h3>What you do and show in Vila</h3>
+<ul>
+  <li><strong>Profile:</strong> your character's look, your status (emoji and text), your birthday day and month if you choose to add it, and your preferences.</li>
+  <li><strong>Desk:</strong> the desk assigned to you, the items you decorated it with, and the notes left on it (text, author and time), with their reactions and replies.</li>
+  <li><strong>Presence:</strong> where your character is on the map, whether you are available, focused or in a meeting, and when you were last online. Your map position is used in real time and is not stored as a history.</li>
+  <li><strong>Farm game:</strong> what you plant, harvest, buy and sell in the game, and your coins.</li>
+  <li><strong>Sessions:</strong> a hashed access key and the browser or app you signed in from, to keep you signed in.</li>
+</ul>
+<h3>Voice, video, screen and chat</h3>
+<ul>
+  <li><strong>Voice, video and shared screens</strong> are relayed in real time by the media server we operate, only to people near you or in the same room. <strong>We do not record</strong> calls, video or screens.</li>
+  <li><strong>Chat messages</strong> in rooms and in the auditorium are kept only in the server's memory, so people who join can see the latest messages. They are not saved to the database and disappear when the room closes.</li>
+</ul>
+<h3>Integrations (optional)</h3>
+<ul>
+  <li><strong>GitHub and Linear:</strong> when your organization's administrator enables an integration and you connect your account, Vila receives your username on that tool and a few work events: a merged pull request, a review, a completed issue, CI going back to green, with their title and link. These events become rewards in the farm game. To sync, we store the integration's access token.</li>
+  <li><strong>Spotify (Mac app):</strong> off by default. If you turn it on in Settings, the app reads, on your own Mac, the song playing in Spotify and shows the track and artist name to your team while it plays. Vila does not access your Spotify account and never asks you to sign in to it.</li>
+</ul>
+<h3>Mac app</h3>
+<p>The Mac app checks for updates in Vila's public installer repository on GitHub. It does not send usage or crash reports.</p>
+
+<h2 id="google">3. Sign in with Google</h2>
+<p>When you choose to sign in with Google, Vila requests only the <strong>openid</strong>, <strong>email</strong> and <strong>profile</strong> scopes. With them we receive your name, your email address, whether it is verified, your Google account identifier and your account's domain, if any.</p>
+<ul>
+  <li>We use this data <strong>only to sign you in</strong>, create your account with your name and email, and check that you belong to the organization you are trying to access.</li>
+  <li>Vila <strong>does not access</strong> your Gmail, Google Drive, Calendar, contacts or any other data in your Google account, and does not store your Google profile photo.</li>
+  <li>We do not sell Google user data, do not use it for advertising, and do not transfer it to third parties except as needed to run the service or as required by law.</li>
+</ul>
+<div class="callout"><p>Vila's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p></div>
+<p>You can remove Vila's access to your Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+<h2 id="use">4. How we use it</h2>
+<ul>
+  <li><strong>To run Vila:</strong> sign you in, show you on the map, connect your voice with people nearby, and keep your desk and your game. Legal basis: performance of the service you or your organization signed up for (LGPD art. 7, V).</li>
+  <li><strong>For integrations and Spotify,</strong> which you or your administrator choose to enable. Legal basis: your consent, which you can withdraw at any time by turning the integration off (art. 7, I).</li>
+  <li><strong>To keep the service secure and stable:</strong> prevent abuse, investigate failures and make backups. Legal basis: our legitimate interest (art. 7, IX).</li>
+</ul>
+<p>We do not use your data for advertising, do not sell personal data and do not build marketing profiles.</p>
+
+<h2 id="visibility">5. Who sees what</h2>
+<p>Vila is your organization's workspace. People in the same organization see your name, your character, your status, where you are on the map, the music you chose to show and the notes left on your desk. People nearby hear your voice while your microphone is on. Organization administrators manage invites, teams and integrations, and can remove accounts.</p>
+
+<h2 id="sharing">6. Who we share it with</h2>
+<ul>
+  <li><strong>Infrastructure providers</strong> that host Vila's servers and database, only to operate the service. Servers may be located outside Brazil; in that case the transfer follows the LGPD rules for international transfers.</li>
+  <li><strong>GitHub and Linear</strong>, only when the integration is on, to bring in work events.</li>
+  <li><strong>Authorities</strong>, when required by law.</li>
+</ul>
+<p>Other than that, we do not share your personal data with anyone.</p>
+
+<h2 id="retention">7. How long we keep it</h2>
+<ul>
+  <li><strong>Account and profile:</strong> as long as your account exists. When an administrator removes your account, it leaves Vila; if you ask, we also permanently delete its data.</li>
+  <li><strong>Titles of GitHub and Linear events:</strong> 30 days.</li>
+  <li><strong>Sessions:</strong> expire 30 days after last use, or when you sign out.</li>
+  <li><strong>Chat:</strong> not stored in the database.</li>
+  <li><strong>Backups:</strong> one per day, kept for 14 days and then deleted.</li>
+</ul>
+
+<h2 id="security">8. Security</h2>
+<p>All communication with Vila is encrypted (HTTPS and secure connections for voice and video). Passwords and session keys are stored hashed, server access is restricted and backups are protected. No system is perfect; if an incident may put you at risk, we will notify you and Brazil's National Data Protection Authority (ANPD), as the law requires.</p>
+
+<h2 id="cookies">9. Cookies</h2>
+<p>Vila uses only the cookie needed to keep you signed in. We do not use advertising or analytics cookies. This website (getvila.app) uses no cookies or analytics tools; it is hosted on GitHub Pages, which may log technical access data such as IP addresses to operate and protect its service.</p>
+
+<h2 id="rights">10. Your rights</h2>
+<p>Under the LGPD you may ask at any time for:</p>
+<ul>
+  <li>confirmation that we process your data, and access to it;</li>
+  <li>correction of incomplete, inaccurate or outdated data;</li>
+  <li>anonymization, blocking or deletion of unnecessary data or data processed unlawfully;</li>
+  <li>portability of your data;</li>
+  <li>deletion of data processed with your consent, and information about who it was shared with;</li>
+  <li>withdrawal of consent, for example by turning off Spotify or an integration.</li>
+</ul>
+<p>To make a request, email <a href="mailto:contato@getvila.app">contato@getvila.app</a>. We answer within 15 days. If your access to Vila comes from your company, you can also talk to your organization's administrator. If you feel we did not resolve it, you can file a complaint with the ANPD.</p>
+<p>Vila is meant for professional use and is not intended for anyone under 18.</p>
+
+<h2 id="changes">11. Changes to this policy</h2>
+<p>If this policy changes, the date at the top of the page changes too. If the change is significant, we will let you know before it takes effect.</p>
+
+<h2 id="contact">12. Contact</h2>
+<p>Marcos Junior, responsible for Vila: <a href="mailto:contato@getvila.app">contato@getvila.app</a>.</p>
+</main>
+<footer>
+  <div class="wrap">
+    <a href="../">getvila.app</a>
+    <a href="mailto:contato@getvila.app">contato@getvila.app</a>
+  </div>
+</footer>
+</body>
+</html>
