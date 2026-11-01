@@ -122,6 +122,9 @@ p { margin: 0; }
 .pill:hover { text-decoration: none; }
 .pill.primary { background: var(--accent); color: var(--on-accent); }
 .pill.primary:hover { background: var(--accent-hover); }
+.pill.alt { background: var(--accent-soft); color: var(--link); }
+.pill.alt:hover { background: var(--tile-2); }
+.dl { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .pill.sm { font-size: 13px; padding: 5px 14px; }
 .pill.lg { font-size: 17px; padding: 12px 24px; }
 .more { font-size: 19px; }
@@ -648,6 +651,7 @@ input[type="range"] { flex: 1; min-width: 0; accent-color: var(--ipe); height: 2
 .closing { text-align: center; background: var(--tile); }
 .closing img.icon { width: 132px; height: 132px; border-radius: 30px; display: block; margin: 0 auto 28px; box-shadow: 0 12px 40px #2e5e4e40; }
 .closing .ctas { display: flex; gap: 28px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 32px; }
+.closing .note { max-width: 520px; margin: 20px auto 0; font-size: 14px; color: var(--ink-3); }
 
 footer { padding-block: 28px 48px; font-size: 12px; color: var(--ink-3); background: var(--tile); }
 footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
@@ -694,7 +698,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
       <li><a href="#escritorio">Escritório</a></li>
       <li><a href="#predio">Prédio</a></li>
       <li><a href="#roca">Roça</a></li>
-      <li><a href="#mac">App para Mac</a></li>
+      <li><a href="#mac">App</a></li>
     </ul>
     <a class="pill primary sm" href="#baixar">Baixar</a>
   </div>
@@ -707,7 +711,10 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
       <h1>O escritório inteiro.<br>A um passo.</h1>
       <p class="lede">Um prédio em pixel art onde o time anda, senta na mesa e conversa por voz. Sem agendar e sem link.</p>
       <div class="ctas">
-        <a class="pill primary lg" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-mac.dmg">Baixar para Mac</a>
+        <span class="dl">
+          <a class="pill primary lg" data-os="mac" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-mac.dmg">Baixar para Mac</a>
+          <a class="pill alt lg" data-os="win" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-windows.exe">Baixar para Windows</a>
+        </span>
         <a class="more" href="#conversa">Ver como funciona</a>
       </div>
     </div>
@@ -885,7 +892,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
           <div>
             <p class="label">Música</p>
             <h3>Descubra música pelo time.</h3>
-            <p>Ligue o Spotify no app do Mac e a música que está tocando aparece debaixo do seu nome. Quem vê clica e ouve também.</p>
+            <p>Ligue o Spotify no app e a música que está tocando aparece debaixo do seu nome. Quem vê clica e ouve também.</p>
             <p style="font-size:15px">Em Ajustes › Integrações › Spotify. Vem desligado.</p>
           </div>
           <div class="playlist" aria-label="Lista de pessoas com a música de cada uma">
@@ -1159,9 +1166,9 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
   <section id="mac">
     <div class="wrap">
       <div class="head center">
-        <p class="eyebrow">App para Mac</p>
+        <p class="eyebrow">App para Mac e Windows</p>
         <h2>Feito para ficar aberto o dia todo.</h2>
-        <p>O Vila mora na barra do Mac e trabalha em segundo plano. Quando alguém te chama, você fica sabendo.</p>
+        <p>O Vila mora na barra do Mac ou na bandeja do Windows e trabalha em segundo plano. Quando alguém te chama, você fica sabendo.</p>
       </div>
     </div>
 
@@ -1212,12 +1219,12 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
           <p class="label">Atalho do microfone</p>
           <h3>Mudo, de qualquer app.</h3>
           <p>O atalho liga e desliga o microfone mesmo com o Vila escondido. Dá para trocar nos Ajustes.</p>
-          <div class="art"><div class="keys" aria-label="Command, Shift, M"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>M</kbd></div></div>
+          <div class="art"><div class="keys" id="mute-keys" aria-label="Command, Shift, M"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>M</kbd></div></div>
         </article>
         <article class="tile">
           <p class="label">Avisos</p>
           <h3>Um aceno chega na hora.</h3>
-          <p>Os avisos são os do Mac, com a ação ali mesmo. Um clique e você vai até a pessoa.</p>
+          <p>Os avisos são os do sistema, com a ação ali mesmo. Um clique e você vai até a pessoa.</p>
           <div class="art"><div class="toast"><img class="app-ico" src="img/icone.png" alt=""><div><small>Vila · agora</small><strong>Carla Souza</strong> acenou para você</div><span class="act">Ir até</span></div></div>
         </article>
         <article class="tile">
@@ -1229,12 +1236,12 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
       </div>
 
       <div class="small-facts">
-        <div><svg class="i"><use href="#i-display"/></svg><strong>A tela não apaga</strong><p>Durante a conversa, o Mac não descansa a tela.</p></div>
+        <div><svg class="i"><use href="#i-display"/></svg><strong>A tela não apaga</strong><p>Durante a conversa, o computador não descansa a tela.</p></div>
         <div><svg class="i"><use href="#i-screen"/></svg><strong>Compartilhe a tela</strong><p>Escolha a tela ou a janela pela miniatura. Quem está perto clica em Assistir.</p></div>
-        <div><svg class="i"><use href="#i-refresh"/></svg><strong>Atualiza sozinho</strong><p>Vila › Buscar atualizações procura uma versão nova na hora.</p></div>
+        <div><svg class="i"><use href="#i-refresh"/></svg><strong>Atualiza sozinho</strong><p>Buscar atualizações procura uma versão nova na hora: no Mac, no menu Vila; no Windows, no ícone da bandeja.</p></div>
         <div><svg class="i"><use href="#i-sun"/></svg><strong>Claro ou escuro</strong><p>Ou automático, o mesmo do computador. Em Ajustes › Geral.</p></div>
         <div><svg class="i"><use href="#i-steps"/></svg><strong>Sons do mapa</strong><p>Passos, portas e um plim quando o elevador chega. Tudo bem baixinho.</p></div>
-        <div><svg class="i"><use href="#i-music"/></svg><strong>O que você está ouvindo</strong><p>O app lê a música do Spotify do Mac, sem pedir login. Funciona com a conta grátis.</p></div>
+        <div><svg class="i"><use href="#i-music"/></svg><strong>O que você está ouvindo</strong><p>O app lê a música do Spotify aberto no computador, sem pedir login. Funciona com a conta grátis.</p></div>
       </div>
     </div>
   </section>
@@ -1244,18 +1251,22 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
       <img class="icon px" src="img/icone.png" alt="Ícone do Vila: a flor de ipê sobre musgo">
       <div class="head center">
         <h2>Entre pelo térreo.<br>Diga oi.</h2>
-        <p>O Vila é para Mac. Também abre no navegador.</p>
+        <p>O Vila é para Mac e Windows. Também abre no navegador.</p>
       </div>
       <div class="ctas">
-        <a class="pill primary lg" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-mac.dmg">Baixar para Mac</a>
+        <span class="dl">
+          <a class="pill primary lg" data-os="mac" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-mac.dmg">Baixar para Mac</a>
+          <a class="pill alt lg" data-os="win" href="https://github.com/getvilaapp/vila-desktop/releases/latest/download/Vila-windows.exe">Baixar para Windows</a>
+        </span>
       </div>
+      <p class="note">No Windows, a primeira instalação pode mostrar um aviso do SmartScreen: clique em Mais informações e depois em Executar assim mesmo.</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <p>Vila para macOS. A versão para Windows está a caminho.</p>
+    <p>Vila para macOS e Windows.</p>
     <p>Os nomes e conversas desta página são exemplos.</p>
     <p><a href="privacidade/">Política de privacidade</a> · <a href="privacy/" hreflang="en" lang="en">Privacy Policy</a> · <a href="mailto:contato@getvila.app">contato@getvila.app</a></p>
   </div>
@@ -1277,6 +1288,20 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
   const scene = (update, reset) => scenes.push({ update, reset });
   let interacted = false;
   ['pointerdown', 'keydown'].forEach((t) => window.addEventListener(t, () => { interacted = true; }, { once: true, passive: true }));
+
+  // ---- Windows: its download comes first and the mute shortcut uses Ctrl.
+  if (/Windows/i.test(navigator.userAgent)) {
+    document.querySelectorAll('.dl').forEach((dl) => {
+      const mac = dl.querySelector('[data-os="mac"]');
+      const win = dl.querySelector('[data-os="win"]');
+      mac.classList.replace('primary', 'alt');
+      win.classList.replace('alt', 'primary');
+      dl.prepend(win);
+    });
+    const keys = document.getElementById('mute-keys');
+    keys.setAttribute('aria-label', 'Ctrl, Shift, M');
+    keys.firstElementChild.textContent = 'Ctrl';
+  }
 
   // ---- Hero: start close on Carla and Ana, pull back to the floor.
   const heroWorld = document.getElementById('hero-world');

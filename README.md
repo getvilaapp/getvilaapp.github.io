@@ -5,9 +5,10 @@ Site do Vila: https://getvila.app (o domínio fica no arquivo `CNAME`; o DNS est
 Página estática, sem build. Tudo está no `index.html` (estilo e script inline); as imagens ficam em
 `img/` e as fontes em `fonts/`. O GitHub Pages publica a branch `main` direto da raiz.
 
-- **Baixar para Mac** aponta para o último release de
+- **Baixar para Mac** e **Baixar para Windows** apontam para o último release de
   [`getvilaapp/vila-desktop`](https://github.com/getvilaapp/vila-desktop/releases/latest)
-  (`Vila-mac.dmg`), então não precisa mudar a cada versão.
+  (`Vila-mac.dmg` e `Vila-windows.exe`), então não precisam mudar a cada versão. No Windows, o
+  botão do Windows vem primeiro (pelo `navigator.userAgent`).
 - **Imagens:** a arte em pixel é a do jogo (pacotes da LimeZu, os mesmos do app). As cenas de mapa
   saem dos mapas gerados no repositório do Vila.
 - **Fontes:** Atkinson Hyperlegible Next e Departure Mono, ambas na SIL Open Font License (`fonts/OFL-*.txt`).
