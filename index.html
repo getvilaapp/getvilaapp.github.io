@@ -430,8 +430,8 @@ input[type="range"] { flex: 1; min-width: 0; accent-color: var(--ipe); height: 2
 .hud .stat { padding: 12px 18px; font-size: 22px; line-height: 26px; }
 .hud .tip { padding: 12px 18px; font-size: 16px; line-height: 20px; }
 .hud .tip kbd, .feito kbd { font-family: var(--roca); background: var(--roca-tinta); color: var(--roca-cal); padding: 0 6px; }
-.mapa { margin: 0; padding: 8px; width: 100%; }
-.mapa .view { position: relative; aspect-ratio: 2304 / 1392; background: #3c7a3a; }
+.mapa { margin: 0; padding: 8px; width: min(100%, 760px); align-self: center; }
+.mapa .view { position: relative; aspect-ratio: 1883 / 1750; background: #3c7a3a; }
 .mapa .view img { width: 100%; height: 100%; display: block; }
 .pin {
   position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); transform: translate(-50%, -50%);
@@ -481,6 +481,20 @@ input[type="range"] { flex: 1; min-width: 0; accent-color: var(--ipe); height: 2
 .quintal span em { position: absolute; right: 3px; bottom: 2px; font-style: normal; }
 .quintal span img { width: 32px; height: 32px; }
 .quintal span.sel { outline: 3px solid var(--ipe); outline-offset: -1px; }
+.roca { --madeira: #a0703f; --bronze: #c9803c; --prata: #b9c4ca; --ouro: #e9b824; }
+.hud .mats { display: flex; align-items: center; gap: 18px; }
+.hud .mats span { display: flex; align-items: center; gap: 6px; }
+.hud .mats img { width: 24px; height: 24px; }
+.tabela li b { display: inline-flex; align-items: center; gap: 2px; }
+.tabela li b img { width: 16px; height: 16px; }
+.bichos.x3 img { height: calc(var(--h) * 3px); }
+.bichos.x4 img { height: calc(var(--h) * 4px); }
+.roca .slot { flex: none; display: grid; place-items: center; background: var(--roca-palha); border: 2px solid var(--roca-terra); box-shadow: inset 0 0 0 3px var(--nivel); }
+.roca .slot img { width: 64%; height: 64%; }
+.niveis { position: absolute; inset: 0; display: grid; grid-template-columns: auto repeat(4, 52px); gap: 8px 10px; align-content: center; justify-content: center; justify-items: center; align-items: center; padding: 14px; }
+.niveis small { justify-self: stretch; font-size: 10px; line-height: 14px; text-transform: none; text-align: center; white-space: nowrap; background: var(--roca-cal); color: var(--roca-tinta); border: 2px solid var(--roca-tinta); padding: 1px 4px; }
+.niveis i { width: 44px; height: 44px; display: grid; place-items: center; background: var(--roca-palha); border: 2px solid var(--roca-terra); box-shadow: inset 0 0 0 3px var(--nivel); }
+.niveis i img { width: 32px; height: 32px; }
 @media (max-width: 980px) {
   .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .feitos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -496,6 +510,7 @@ input[type="range"] { flex: 1; min-width: 0; accent-color: var(--ipe); height: 2
   .roca .wrap { padding-block: 72px; } .roca .title { padding: 20px; }
   .quintal span { width: 40px; height: 40px; } .quintal span img { width: 24px; height: 24px; }
   .pin { font-size: 9px; line-height: 11px; padding: 1px 4px; border-width: 1px; }
+  .niveis { grid-template-columns: auto repeat(4, 46px); gap: 6px; padding: 10px; } .niveis i { width: 38px; height: 38px; } .niveis i img { width: 28px; height: 28px; }
   .pin.opt { display: none; }
 }
 
@@ -539,32 +554,58 @@ input[type="range"] { flex: 1; min-width: 0; accent-color: var(--ipe); height: 2
   .scroll-driven #elev .view p { font-size: 15px; }
 }
 
-/* Horta: one scroll is the whole loop, from PR to coins. */
+/* Caixote: one scroll is the whole loop, from the PR to the tool. */
 .roca .scrolly { width: 100%; }
 .hstage { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .hcap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 14px; padding: 14px 22px; font-size: clamp(18px, 2.4vw, 28px); line-height: 1.25; text-align: center; min-height: 2.2em; }
 .hcap b { font-weight: 400; color: #2f7a3e; }
 .hframe { padding: 8px; width: min(100%, calc(46svh * 1.5), 600px); }
-.horta { position: relative; aspect-ratio: 3 / 2; background: #4b9a52 url(img/grama.png) repeat; background-size: calc(100% / 3) calc(100% / 2); overflow: hidden; }
-.horta .soil { position: absolute; left: calc(100% / 6); top: 25%; width: calc(100% * 4 / 6); height: 50%; opacity: var(--o, 1); }
-.horta .planta {
-  position: absolute; left: calc((1 + var(--c)) * 100% / 6); top: calc(var(--r) * 25%); width: calc(100% / 6); height: 50%;
-  background-size: 700% 100%; background-repeat: no-repeat; background-position: calc(var(--f, 6) / 6 * 100%) 0;
-  opacity: var(--o, 1); transform: translateY(calc(var(--lift, 0) * -1%)); z-index: calc(1 + var(--r));
+.caixa {
+  position: relative; aspect-ratio: 3 / 2; background: #4b9a52 url(img/grama.png) repeat; background-size: calc(100% / 6) calc(100% / 4);
+  overflow: hidden; container-type: inline-size; font-family: var(--roca);
 }
-.horta .gota { position: absolute; left: calc((1 + var(--c)) * 100% / 6); top: calc((1 + var(--r)) * 25% - 14%); width: calc(100% / 6); opacity: var(--o, 0); z-index: 5; animation: bob 1.2s ease-in-out infinite alternate; }
+.caixa .fato {
+  position: absolute; left: 5%; top: var(--top); width: 44%; padding: 1.6cqw 2.2cqw; z-index: 2;
+  display: flex; flex-direction: column; gap: .4cqw; font-size: clamp(10px, 2.6cqw, 15px); line-height: 1.2;
+  background: var(--roca-cal); color: var(--roca-tinta); border: 2px solid var(--roca-tinta); box-shadow: 0 .8cqw 0 #1e262273;
+  opacity: calc(var(--in, 1) * (1 - var(--fly, 0)));
+  transform: translate(calc((1 - var(--in, 1)) * -8cqw + var(--fly, 0) * 46cqw), calc(-50% + var(--fly, 0) * var(--ty))) scale(calc(1 - var(--fly, 0) * .7));
+}
+.caixa .fato small { font-size: .72em; color: var(--roca-apoio); text-transform: uppercase; }
+.caixa .caixote { position: absolute; left: 74%; top: 50%; width: 24cqw; z-index: 1; opacity: calc(1 - var(--dim, 0) * .75); transform: translate(-50%, -50%) scale(var(--pulse, 1)); }
+.caixa .caixote img { display: block; width: 100%; height: auto; filter: drop-shadow(0 1cqw 0 #1e262240); }
+.caixa .caixote.cheio img { filter: drop-shadow(0 0 1.4cqw var(--ipe)) drop-shadow(0 1cqw 0 #1e262240); animation: bob 1.2s ease-in-out infinite alternate; }
 @keyframes bob { to { transform: translateY(-6%); } }
-.horta .brilho { position: absolute; left: calc((1 + var(--c)) * 100% / 6); top: calc((1 + var(--r)) * 25% - 6%); width: calc(100% / 6); height: 25%; overflow: hidden; opacity: var(--o, 0); z-index: 6; }
-.horta .brilho img { position: absolute; left: 0; top: 0; height: 100%; width: 800%; max-width: none; animation: brilho .8s steps(8) infinite; }
-@keyframes brilho { to { transform: translateX(-100%); } }
-.horta .voce { z-index: 3; }
+.caixa .conta {
+  position: absolute; right: -8%; top: -10%; min-width: 7.5cqw; height: 7.5cqw; padding: 0 1.4cqw; display: grid; place-items: center;
+  background: var(--ipe); color: var(--roca-tinta); border: 2px solid var(--roca-tinta); font-weight: 400; font-size: clamp(11px, 3.4cqw, 18px); opacity: var(--o, 1);
+}
+.caixa .ganhos { position: absolute; left: 74%; top: 9%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2, auto); gap: 1.2cqw; z-index: 3; }
+.caixa .ganhos span {
+  display: flex; align-items: center; gap: .6cqw; padding: .6cqw 1.4cqw; font-size: clamp(10px, 2.8cqw, 16px); border-width: 2px;
+  opacity: var(--o, 0); transform: translateY(calc(var(--lift, 0) * -1cqw));
+}
+.caixa .ganhos img { width: 4cqw; height: 4cqw; }
+.caixa .receita {
+  position: absolute; left: 50%; top: 50%; width: 78%; padding: 2.4cqw 3cqw; z-index: 4; display: flex; flex-direction: column; gap: 1.8cqw;
+  font-size: clamp(11px, 2.8cqw, 16px); line-height: 1.25; opacity: var(--o, 0); transform: translate(-50%, calc(-50% + (1 - var(--o, 0)) * 4cqw));
+}
+.caixa .receita small { font-size: .75em; color: var(--roca-apoio); text-transform: uppercase; }
+.caixa .receita .linha { display: flex; align-items: center; gap: 2.4cqw; }
+.caixa .receita strong { display: block; font-weight: 400; }
+.caixa .receita .custo { display: flex; flex-wrap: wrap; align-items: center; gap: .6cqw; margin-top: .6cqw; font-size: .85em; color: var(--roca-apoio); }
+.caixa .receita .custo img { width: 3.6cqw; height: 3.6cqw; }
+.caixa .receita .slot { width: 11cqw; height: 11cqw; }
+.caixa .fazer { align-self: flex-end; font-weight: 400; padding: 1cqw 3cqw; background: var(--roca-tinta); color: var(--roca-cal); }
+.caixa .fazer.feita { background: #2f7a3e; }
 .hhud { justify-content: center; }
 .hhud .stat { display: flex; flex-direction: column; gap: 2px; padding: 10px 16px; min-width: 112px; }
 .hhud .stat small { font-size: 11px; line-height: 12px; color: var(--roca-apoio); text-transform: uppercase; }
 .hhud .stat span { font-size: 24px; line-height: 28px; }
 .hhud .stat.bump span { color: #2f7a3e; }
+.hhud .stat.gasto span { color: var(--urucum); }
 .roca .scrolly:not(.on) .hstage { padding-block: 8px; }
-@media (max-width: 600px) { .hhud { gap: 8px; } .hhud .stat { min-width: 0; flex: 1; padding: 8px 10px; } .hhud .stat span { font-size: 20px; } .hcap { padding: 10px 14px; } }
+@media (max-width: 600px) { .hhud { gap: 8px; width: min(100%, 360px); flex-wrap: nowrap; } .hhud .stat { min-width: 0; flex: 1; padding: 8px 8px; } .hhud .stat small { font-size: 9px; } .hhud .stat span { font-size: 20px; } .hcap { padding: 10px 14px; } }
 
 /* Modo mini: the app window shrinks into the floating mini window. */
 .mcap { position: relative; display: grid; text-align: center; margin-bottom: 28px; }
@@ -663,7 +704,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
   .mac, .sprite img, .walker, .walker + .tag, .walker img { animation: none !important; }
   .floor .sprite, .floor .tag { transition: none; }
   .waves i { animation: none; opacity: .6; transform: translate(-50%, -50%) scale(1.4); }
-  .horta .gota, .horta .brilho img, .view .frame img.up, .view .frame img.down { animation: none; }
+  .caixa .caixote.cheio img, .view .frame img.up, .view .frame img.down { animation: none; }
 }
 </style>
 </head>
@@ -969,196 +1010,251 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
     <div class="wrap">
       <div class="frame-jogo title">
         <small>Roça</small>
-        <h2>Depois do expediente, a roça.</h2>
-        <p>Cada pessoa tem um quintal na roça da squad: começa com a casa, a horta e o portão, e o resto você planta, compra e monta. O que você faz no GitHub e no Linear vira semente, água e adubo.</p>
+        <h2>Seu trabalho vira a sua roça.</h2>
+        <p>Cada squad mora numa ilha, e cada pessoa tem um lote com casa, praia e píer, ainda tomado pelo mato. O material para abrir o terreno e construir vem do que você entrega no GitHub e no Linear.</p>
       </div>
       <div class="hud">
-        <div class="frame-jogo stat num">Nível 4 · Moedas 380</div>
+        <div class="frame-jogo stat num mats">
+          <span><img class="px" src="img/m-madeira.png" alt="Madeira">24</span>
+          <span><img class="px" src="img/m-pedra.png" alt="Pedra">18</span>
+          <span><img class="px" src="img/m-ferro.png" alt="Ferro">9</span>
+        </div>
         <div class="frame-jogo tip"><kbd>Espaço</kbd> usa a ferramenta</div>
         <div class="frame-jogo tip"><kbd>E</kbd> abre a mochila</div>
       </div>
 
-      <div class="scrolly" id="horta-scene" style="--len:440vh">
+      <div class="scrolly" id="caixa-scene" style="--len:440vh">
         <div class="stick">
           <div class="hstage">
-            <p class="frame-jogo hcap" id="hcap" aria-live="polite"><span id="hcap-t">PR vira semente, review vira água.</span><b id="hcap-b">A colheita vira moeda.</b></p>
-            <div class="frame-jogo hframe"><div class="horta" id="horta" role="img" aria-label="Uma horta de tomate e milho: capinada, plantada, regada, crescida e colhida">
-              <img class="soil" id="soil-dry" src="img/horta-seca.png" alt="">
-              <img class="soil" id="soil-wet" src="img/horta-molhada.png" alt="">
-              <span class="sprite voce" style="--w:96;--h:64;--x:0;--y:18"><img src="img/p9-idle.png" alt=""></span>
-              <span class="planta" data-i="0" style="--c:0;--r:0;background-image:url(img/crop-tomato.png)"></span>
-              <span class="planta" data-i="1" style="--c:1;--r:0;background-image:url(img/crop-tomato.png)"></span>
-              <span class="planta" data-i="2" style="--c:2;--r:0;background-image:url(img/crop-tomato.png)"></span>
-              <span class="planta" data-i="3" style="--c:3;--r:0;background-image:url(img/crop-tomato.png)"></span>
-              <span class="planta" data-i="4" style="--c:0;--r:1;background-image:url(img/crop-corn.png)"></span>
-              <span class="planta" data-i="5" style="--c:1;--r:1;background-image:url(img/crop-corn.png)"></span>
-              <span class="planta" data-i="6" style="--c:2;--r:1;background-image:url(img/crop-corn.png)"></span>
-              <span class="planta" data-i="7" style="--c:3;--r:1;background-image:url(img/crop-corn.png)"></span>
-              <img class="gota" src="img/gota.png" alt="" data-i="0" style="--c:0;--r:0">
-              <img class="gota" src="img/gota.png" alt="" data-i="1" style="--c:1;--r:0">
-              <img class="gota" src="img/gota.png" alt="" data-i="2" style="--c:2;--r:0">
-              <img class="gota" src="img/gota.png" alt="" data-i="3" style="--c:3;--r:0">
-              <img class="gota" src="img/gota.png" alt="" data-i="4" style="--c:0;--r:1">
-              <img class="gota" src="img/gota.png" alt="" data-i="5" style="--c:1;--r:1">
-              <img class="gota" src="img/gota.png" alt="" data-i="6" style="--c:2;--r:1">
-              <img class="gota" src="img/gota.png" alt="" data-i="7" style="--c:3;--r:1">
-              <span class="brilho" id="brilho" style="--c:2;--r:0"><img src="img/brilho.png" alt=""></span>
+            <p class="frame-jogo hcap" id="ccap" aria-live="polite"><span id="ccap-t">O trabalho enche o caixote.</span><b id="ccap-b">A bancada transforma.</b></p>
+            <div class="frame-jogo hframe"><div class="caixa" id="caixa" role="img" aria-label="Um PR com merge, uma review e uma issue concluída entram no caixote do lote. Aberto, ele dá madeira, pedra, ferro e cobre, que viram uma foice de bronze na bancada.">
+              <div class="fato" style="--top:22%;--ty:18cqw"><small>GitHub</small><span>PR #412 com merge</span></div>
+              <div class="fato" style="--top:50%;--ty:0cqw"><small>GitHub</small><span>Review no PR #410</span></div>
+              <div class="fato" style="--top:78%;--ty:-18cqw"><small>Linear</small><span>Issue VIL-88 concluída</span></div>
+              <div class="caixote" id="caixote"><img class="px" src="img/caixote.png" alt=""><b class="conta num" id="conta">3</b></div>
+              <div class="ganhos" id="ganhos">
+                <span class="frame-jogo"><img class="px" src="img/m-madeira.png" alt="">+8</span>
+                <span class="frame-jogo"><img class="px" src="img/m-pedra.png" alt="">+6</span>
+                <span class="frame-jogo"><img class="px" src="img/m-ferro.png" alt="">+3</span>
+                <span class="frame-jogo"><img class="px" src="img/m-cobre.png" alt="">+1</span>
+              </div>
+              <div class="frame-jogo receita" id="receita">
+                <small>Bancada · Receitas</small>
+                <div class="linha">
+                  <span class="slot" style="--nivel:var(--bronze)"><img class="px" src="img/t-foice.png" alt=""></span>
+                  <div><strong>Foice de bronze</strong><p class="custo num">30 moedas · 4<img class="px" src="img/m-madeira.png" alt=" madeiras"> 3<img class="px" src="img/m-ferro.png" alt=" ferros"> 1<img class="px" src="img/m-cobre.png" alt=" cobre"></p></div>
+                </div>
+                <b class="fazer" id="fazer">Fazer</b>
+              </div>
             </div></div>
             <div class="hud hhud">
-              <div class="frame-jogo stat"><small>Sementes</small><span class="num" id="h-sem">15</span></div>
-              <div class="frame-jogo stat"><small>Água</small><span class="num" id="h-agua">6</span></div>
-              <div class="frame-jogo stat"><small>Moedas</small><span class="num" id="h-moedas">480</span></div>
+              <div class="frame-jogo stat"><small>Madeira</small><span class="num" id="c-madeira">2</span></div>
+              <div class="frame-jogo stat"><small>Pedra</small><span class="num" id="c-pedra">4</span></div>
+              <div class="frame-jogo stat"><small>Ferro</small><span class="num" id="c-ferro">1</span></div>
+              <div class="frame-jogo stat"><small>Cobre</small><span class="num" id="c-cobre">0</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <figure class="frame-jogo mapa">
-        <div class="view">
-          <img class="px" src="img/roca-mapa.png" width="2304" height="1392" alt="Mapa da roça: doze quintais em duas ruas e, no meio, a praça da feira, o lago com píer, a fogueira, o pomar, o celeiro e o pasto com vacas e ovelhas." loading="lazy">
-          <span class="pin" style="--x:11;--y:8">Seu quintal</span>
-          <span class="pin" style="--x:14;--y:47">Praça da feira</span>
-          <span class="pin" style="--x:40;--y:42">Lago e píer</span>
-          <span class="pin opt" style="--x:59;--y:58">Fogueira</span>
-          <span class="pin" style="--x:74;--y:37">Pomar</span>
-          <span class="pin opt" style="--x:87;--y:44">Celeiro</span>
-          <span class="pin" style="--x:84;--y:65">Pasto</span>
-        </div>
-        <figcaption>Doze quintais em duas ruas, e no meio o que é de todo mundo. A roça cresce com a squad: a M tem dois módulos, a G tem quatro.</figcaption>
-      </figure>
-
       <ol class="loop">
         <li class="frame-jogo">
           <small>1 · Trabalhe</small>
-          <strong>O trabalho vira recurso.</strong>
+          <strong>O trabalho vira material.</strong>
           <ul class="tabela">
-            <li><span>PR mergeado</span><b>3 sementes</b></li>
-            <li><span>Review feito</span><b>2 de água</b></li>
-            <li><span>Review recebido</span><b>1 de água</b></li>
-            <li><span>Issue do Linear concluída</span><b>1 a 5 sementes</b></li>
-            <li><span>CI de volta ao verde</span><b>1 adubo</b></li>
+            <li><span>PR com merge</span><b>3<img class="px" src="img/m-ferro.png" alt=" ferros,"> 2<img class="px" src="img/m-madeira.png" alt=" madeiras"></b></li>
+            <li><span>Review feita</span><b>3<img class="px" src="img/m-pedra.png" alt=" pedras"></b></li>
+            <li><span>Review recebida</span><b>2<img class="px" src="img/m-pedra.png" alt=" pedras"></b></li>
+            <li><span>Issue concluída, por ponto</span><b>2<img class="px" src="img/m-madeira.png" alt=" madeiras,"> 1<img class="px" src="img/m-pedra.png" alt=" pedra"></b></li>
+            <li><span>CI de volta ao verde</span><b>2<img class="px" src="img/m-ferro.png" alt=" ferros"> + adubo</b></li>
           </ul>
         </li>
         <li class="frame-jogo">
-          <small>2 · Plante</small>
-          <strong>Capine, plante, regue e colha.</strong>
-          <p>A semente vira uma cultura da estação. Sem água, a planta só espera: nada murcha nem morre. A gotinha mostra o canteiro que falta regar.</p>
+          <small>2 · Abra</small>
+          <strong>Tudo espera no caixote.</strong>
+          <p>O caixote fica no portão do seu lote e guarda o que o trabalho rendeu até você abrir. Com sorte, vem coisa rara, e às vezes sementes.</p>
+          <div class="icons">
+            <figure><img class="px" src="img/m-cobre.png" alt=""><span>Cobre</span></figure>
+            <figure><img class="px" src="img/m-prata.png" alt=""><span>Prata</span></figure>
+            <figure><img class="px" src="img/m-ouro.png" alt=""><span>Ouro</span></figure>
+            <figure><img class="px" src="img/m-quartzo.png" alt=""><span>Quartzo</span></figure>
+          </div>
         </li>
         <li class="frame-jogo">
-          <small>3 · Venda</small>
-          <strong>Tudo vira moeda na banca.</strong>
-          <p>A banca de sementes compra a colheita, os ovos, o leite, as frutas e os peixes. A colheita dourada vale o triplo.</p>
+          <small>3 · Construa</small>
+          <strong>A bancada transforma.</strong>
+          <p>Material e moeda viram ferramenta melhor, poço, aspersor, barco, celeiro e estufa. A bancada sobe até o nível 5, e cada nível abre receitas novas.</p>
         </li>
         <li class="frame-jogo">
-          <small>4 · Monte</small>
-          <strong>Gaste no seu quintal.</strong>
-          <p>Construções, enfeites, bichos e a vara de pescar. Nada do que se compra dá semente ou água: isso só vem do trabalho.</p>
+          <small>4 · Venda</small>
+          <strong>A moeda vem da banca.</strong>
+          <p>Plante, regue e colha. A banca da ilha compra a colheita, as frutas, os ovos, o leite, a lã e os peixes. A colheita dourada vale o triplo.</p>
         </li>
       </ol>
-      <p class="frame-jogo note">A issue rende sementes conforme a estimativa. O admin ajusta na tabela do jogo quanto cada coisa rende e custa.</p>
+      <p class="frame-jogo note">Cada tipo de entrega tem um limite por dia. Os números são os de fábrica: o admin ajusta na tabela do jogo quanto cada coisa rende e custa.</p>
+
+      <figure class="frame-jogo mapa">
+        <div class="view">
+          <img class="px" src="img/roca-ilha.png" width="1883" height="1750" alt="Mapa de uma ilha: lotes com casa em volta da costa, a mata no meio e, num canto, a vila com o celeiro, o pasto, o lago e a praça." loading="lazy">
+          <span class="pin" style="--x:17;--y:43.6">Seu lote</span>
+          <span class="pin" style="--x:50;--y:50.8">Mata do meio</span>
+          <span class="pin opt" style="--x:84.2;--y:62">Pasto e celeiro</span>
+          <span class="pin opt" style="--x:82.3;--y:75.6">Lago</span>
+          <span class="pin" style="--x:82.3;--y:85.5">Praça</span>
+        </div>
+        <figcaption>Uma ilha por squad. Os lotes ficam em volta, cada um com a sua praia, e a vila, no canto, é de todo mundo. A ilha cresce com a squad: a P tem 6 lotes, a M tem 12 e a G tem 20.</figcaption>
+      </figure>
 
       <div class="feitos">
         <article class="frame-jogo feito full">
-          <div class="shot"><img class="px" src="img/roca-quintal.png" width="352" height="336" alt="Um quintal montado: horta com tomate, milho, cenoura, morango e abóbora, um aspersor regando, espantalho, galinheiro com galinhas, casinha com cachorro e uma macieira carregada." loading="lazy"></div>
-          <div class="txt">
-            <small>Decorar</small>
-            <strong>Seu quintal, do seu jeito.</strong>
-            <p>Na placa do seu lote, aperte Decorar. Escolha o item, veja a sombra verde onde ele cabe e solte. Dá para mover, guardar e vender de volta pela metade do preço.</p>
-            <div class="chips">
-              <span>Canteiro de flores</span><span>Caixote</span><span>Lenha</span><span>Espantalho</span><span>Mesa com banquinhos</span><span>Cercadinho</span><span>Casinha</span><span>Poço</span><span>Laguinho</span><span>Galinheiro</span><span>Aspersor</span><span>Muda de árvore</span>
+          <div class="shot">
+            <div class="bichos" role="img" aria-label="O que cobre o lote: mato, galho, tronco caído, toco, árvore velha, pedra pequena e pedra grande">
+              <figure><img class="px" src="img/obst-mato.png" style="--h:16" alt=""><figcaption>Mato</figcaption></figure>
+              <figure><img class="px" src="img/obst-branch.png" style="--h:16" alt=""><figcaption>Galho</figcaption></figure>
+              <figure><img class="px" src="img/obst-log.png" style="--h:32" alt=""><figcaption>Tronco</figcaption></figure>
+              <figure><img class="px" src="img/obst-stump.png" style="--h:32" alt=""><figcaption>Toco</figcaption></figure>
+              <figure><img class="px" src="img/obst-old_tree.png" style="--h:80" alt=""><figcaption>Árvore velha</figcaption></figure>
+              <figure><img class="px" src="img/obst-pebble.png" style="--h:32" alt=""><figcaption>Pedra</figcaption></figure>
+              <figure><img class="px" src="img/obst-boulder.png" style="--h:32" alt=""><figcaption>Pedra grande</figcaption></figure>
             </div>
-            <p>O aspersor fica num canteiro e rega os oito em volta, uma vez por dia. A muda de maçã, laranja, pêssego, limão ou banana cresce em sete dias e depois dá uma fruta por dia.</p>
+          </div>
+          <div class="txt">
+            <small>Seu lote</small>
+            <strong>Uma casa, uma praia e muito mato.</strong>
+            <p>O lote vem com casa, olho d'água, praia e píer, mas boa parte nasce tomada. A foice tira o mato, o machado tira galho, tronco e toco, e a enxada quebra pedra. O que sai do chão vira madeira e pedra.</p>
+            <ul class="tabela">
+              <li><span>Mato e galho</span><b>foice e machado de madeira</b></li>
+              <li><span>Pedra e tronco</span><b>de bronze</b></li>
+              <li><span>Toco e pedra grande</span><b>de prata</b></li>
+              <li><span>Árvore velha</span><b>machado de ouro</b></li>
+            </ul>
+            <p>Limpou, plantou: a horta vai onde você quiser. O balde enche no olho d'água, e o Decorar, ao lado da placa, põe no lote o que você comprou e fez.</p>
+          </div>
+        </article>
+
+        <article class="frame-jogo feito wide">
+          <div class="shot">
+            <div class="niveis" role="img" aria-label="Enxada, regador, foice e machado nos quatro níveis: madeira, bronze, prata e ouro">
+              <span></span><small>Madeira</small><small>Bronze</small><small>Prata</small><small>Ouro</small>
+              <small>Enxada</small>
+              <i style="--nivel:var(--madeira)"><img class="px" src="img/t-enxada.png" alt=""></i><i style="--nivel:var(--bronze)"><img class="px" src="img/t-enxada.png" alt=""></i><i style="--nivel:var(--prata)"><img class="px" src="img/t-enxada.png" alt=""></i><i style="--nivel:var(--ouro)"><img class="px" src="img/t-enxada.png" alt=""></i>
+              <small>Água</small>
+              <i style="--nivel:var(--madeira)"><img class="px" src="img/t-balde.png" alt=""></i><i style="--nivel:var(--bronze)"><img class="px" src="img/t-regador.png" alt=""></i><i style="--nivel:var(--prata)"><img class="px" src="img/t-regador.png" alt=""></i><i style="--nivel:var(--ouro)"><img class="px" src="img/t-regador.png" alt=""></i>
+              <small>Foice</small>
+              <i style="--nivel:var(--madeira)"><img class="px" src="img/t-foice.png" alt=""></i><i style="--nivel:var(--bronze)"><img class="px" src="img/t-foice.png" alt=""></i><i style="--nivel:var(--prata)"><img class="px" src="img/t-foice.png" alt=""></i><i style="--nivel:var(--ouro)"><img class="px" src="img/t-foice.png" alt=""></i>
+              <small>Machado</small>
+              <i style="--nivel:var(--madeira)"><img class="px" src="img/t-machado.png" alt=""></i><i style="--nivel:var(--bronze)"><img class="px" src="img/t-machado.png" alt=""></i><i style="--nivel:var(--prata)"><img class="px" src="img/t-machado.png" alt=""></i><i style="--nivel:var(--ouro)"><img class="px" src="img/t-machado.png" alt=""></i>
+            </div>
+          </div>
+          <div class="txt">
+            <small>Bancada</small>
+            <strong>Ferramenta melhor faz mais com menos.</strong>
+            <p>O balde de madeira leva água para dois canteiros; o regador de ouro molha nove de uma vez. A enxada de ouro prepara 25 canteiros num golpe.</p>
+            <ul class="tabela long">
+              <li><span>1 · Bancada rústica</span><b>ferramentas de bronze</b></li>
+              <li><span>2 · Bancada de ferreiro</span><b>ferramentas de prata e o poço</b></li>
+              <li><span>3 · Oficina</span><b>o barco, o celeiro e o primeiro aspersor</b></li>
+              <li><span>4 · Oficina de mestre</span><b>ferramentas de ouro e a estufa pequena</b></li>
+              <li><span>5 · Bancada da guilda</span><b>a estufa grande e o aspersor de ouro</b></li>
+            </ul>
+            <p>Subir a bancada pede moeda, material e o seu nível no jogo. A receita sai na hora.</p>
           </div>
         </article>
 
         <article class="frame-jogo feito">
           <div class="shot">
             <div class="bichos">
-              <figure><img class="px" src="img/bicho-chicken-white.png" style="--h:14" alt=""><figcaption>Galinha 40</figcaption></figure>
-              <figure><img class="px" src="img/bicho-rooster-brown.png" style="--h:15" alt=""><figcaption>Galo 60</figcaption></figure>
-              <figure><img class="px" src="img/bicho-duck-white.png" style="--h:21" alt=""><figcaption>Pato 50</figcaption></figure>
-              <figure><img class="px" src="img/bicho-rabbit-white.png" style="--h:17" alt=""><figcaption>Coelho 50</figcaption></figure>
-              <figure><img class="px" src="img/bicho-dog-labrador.png" style="--h:21" alt=""><figcaption>Cachorro 120</figcaption></figure>
-              <figure><img class="px" src="img/bicho-sheep-white.png" style="--h:17" alt=""><figcaption>Ovelha 150</figcaption></figure>
-              <figure><img class="px" src="img/bicho-cow-spotted.png" style="--h:27" alt=""><figcaption>Vaca 250</figcaption></figure>
+              <figure><img class="px" src="img/bicho-chicken-white.png" style="--h:14" alt=""><figcaption>Galinha</figcaption></figure>
+              <figure><img class="px" src="img/bicho-rooster-brown.png" style="--h:15" alt=""><figcaption>Galo</figcaption></figure>
+              <figure><img class="px" src="img/bicho-duck-white.png" style="--h:21" alt=""><figcaption>Pato</figcaption></figure>
+              <figure><img class="px" src="img/bicho-rabbit-white.png" style="--h:17" alt=""><figcaption>Coelho</figcaption></figure>
+              <figure><img class="px" src="img/bicho-dog-labrador.png" style="--h:21" alt=""><figcaption>Cachorro</figcaption></figure>
+              <figure><img class="px" src="img/bicho-sheep-white.png" style="--h:17" alt=""><figcaption>Ovelha</figcaption></figure>
+              <figure><img class="px" src="img/bicho-cow-spotted.png" style="--h:27" alt=""><figcaption>Vaca</figcaption></figure>
             </div>
           </div>
           <div class="txt">
             <small>Bichos</small>
             <strong>Cada bicho mora na casa dele.</strong>
-            <p>Galinha no galinheiro, pato no laguinho, coelho no cercadinho, cachorro na casinha (e ele segue você pelo lote). Do nível 4, vaca e ovelha vão para o pasto comum, com o seu nome.</p>
+            <p>Galinha no galinheiro, pato no laguinho, coelho no cercadinho e cachorro na casinha. Do nível 4, vaca e ovelha moram no celeiro que você faz na bancada; sem ele, ficam no pasto da vila.</p>
             <div class="icons">
               <figure><img class="px" src="img/prod-egg.png" alt=""><span>Ovo</span></figure>
               <figure><img class="px" src="img/prod-duck_egg.png" alt=""><span>Ovo de pata</span></figure>
               <figure><img class="px" src="img/prod-milk.png" alt=""><span>Leite</span></figure>
+              <figure><img class="px" src="img/prod-wool.png" alt=""><span>Lã</span></figure>
             </div>
-            <p>Galinha e pata botam um ovo por dia, e a vaca dá leite. Ninguém precisa alimentar.</p>
+            <p>A ovelha só dá lã no celeiro.</p>
           </div>
         </article>
 
         <article class="frame-jogo feito">
-          <div class="shot"><img class="px" src="img/roca-pesca.png" width="384" height="240" alt="Alguém pescando na ponta do píer, com a boia na água, e patos nadando no lago." loading="lazy" style="object-position: 50% 30%"></div>
-          <div class="txt">
-            <small>Pesca</small>
-            <strong>Lance, espere, puxe.</strong>
-            <p>Compre a vara na banca de sementes. Da margem ou do píer, <kbd>Espaço</kbd> lança. Quando a boia afundar, aperte de novo antes que o peixe escape.</p>
-            <ul class="tabela">
-              <li><span><img class="px" src="img/peixe-blue.png" alt="">Peixe azul</span><b>8 moedas</b></li>
-              <li><span><img class="px" src="img/peixe-green.png" alt="">Peixe verde</span><b>12 moedas</b></li>
-              <li><span><img class="px" src="img/peixe-orange.png" alt="">Peixe laranja</span><b>18 moedas</b></li>
-              <li><span><img class="px" src="img/peixe-red.png" alt="">Peixe vermelho</span><b>30 moedas</b></li>
-            </ul>
-            <p>Até oito peixes por dia. De vez em quando, uma bota velha.</p>
-          </div>
-        </article>
-
-        <article class="frame-jogo feito">
-          <div class="shot"><img class="px" src="img/roca-pomar.png" width="320" height="288" alt="O pomar cercado, com macieira, laranjeira, pessegueiro, limoeiro, bananeira e mais uma macieira, todas com fruta." loading="lazy"></div>
-          <div class="txt">
-            <small>Pomar</small>
-            <strong>Uma fruta de cada, todo dia.</strong>
-            <p>Seis árvores no miolo da roça. De frente para o tronco, <kbd>Espaço</kbd> colhe. Cada pessoa pega uma fruta de cada árvore por dia, e a árvore fica sem fruta só para quem já colheu.</p>
-            <div class="icons">
-              <figure><img class="px" src="img/fruta-apple.png" alt=""><span>Maçã</span></figure>
-              <figure><img class="px" src="img/fruta-orange.png" alt=""><span>Laranja</span></figure>
-              <figure><img class="px" src="img/fruta-peach.png" alt=""><span>Pêssego</span></figure>
-              <figure><img class="px" src="img/fruta-lemon.png" alt=""><span>Limão</span></figure>
-              <figure><img class="px" src="img/fruta-banana.png" alt=""><span>Banana</span></figure>
+          <div class="shot">
+            <div class="bichos x3" role="img" aria-label="O que cada clima planta: girassol no Pomar, rosa na Serra, abacaxi no Mangue e figo-da-índia no Cerrado">
+              <figure><img class="px" src="img/clima-sunflower.png" style="--h:16" alt=""><figcaption>Pomar</figcaption></figure>
+              <figure><img class="px" src="img/clima-rose.png" style="--h:16" alt=""><figcaption>Serra</figcaption></figure>
+              <figure><img class="px" src="img/clima-pineapple.png" style="--h:16" alt=""><figcaption>Mangue</figcaption></figure>
+              <figure><img class="px" src="img/clima-prickly_pear.png" style="--h:16" alt=""><figcaption>Cerrado</figcaption></figure>
             </div>
+          </div>
+          <div class="txt">
+            <small>Clima</small>
+            <strong>Cada ilha tem o seu tempo.</strong>
+            <p>Pomar, Serra, Mangue ou Cerrado. No Mangue chove muito; no Cerrado, quase nunca, mas a planta cresce mais rápido. A chuva rega a horta sozinha, e o relógio avisa quando amanhã chove.</p>
+            <p>A banca de cada ilha vende o que dá ali e paga mais pelo que vem de fora. Se muita gente vende a mesma coisa, o preço do dia cai.</p>
           </div>
         </article>
 
         <article class="frame-jogo feito wide">
-          <div class="shot"><img class="px" src="img/roca-praca.png" width="464" height="368" alt="A praça da feira com as três bancas, o poço, os bancos e gente comprando." loading="lazy"></div>
+          <div class="shot"><img class="px" src="img/roca-porto.png" width="1024" height="800" alt="A Ilha das Guildas: o farol vermelho, a banca no meio da clareira e os píeres." loading="lazy"></div>
           <div class="txt">
-            <small>Praça da feira</small>
-            <strong>Três bancas, cada uma com quem cuida dela.</strong>
-            <ul class="tabela long">
-              <li><span>Sementes</span><b>compra o que você colhe, pesca e recolhe; vende sementes e a vara</b></li>
-              <li><span>Quintal</span><b>construções e enfeites</b></li>
-              <li><span>Bichos</span><b>da galinha à vaca</b></li>
+            <small>Barco</small>
+            <strong>Navegue até as outras ilhas.</strong>
+            <p>O barco sai do píer do seu lote. Desembarque na ilha de outra squad para visitar alguém, regar a horta dela e deixar recado no livro de visitas. Quem mora no lote escolhe quem pode entrar.</p>
+            <p>Sem barco, a passagem do porto, na vila, leva à Ilha das Guildas, com o farol e a Banca de material.</p>
+            <ul class="tabela">
+              <li><span>Barco</span><b>Oficina, nível 3 da bancada</b></li>
+              <li><span>Conserto</span><b>no píer, com <kbd>C</kbd></b></li>
+              <li><span>Passagem do porto</span><b>80 moedas, ida e volta</b></li>
             </ul>
-            <p>Chegue perto do balcão e aperte <kbd>Espaço</kbd>. O <kbd>B</kbd> vai direto à banca de sementes.</p>
+          </div>
+        </article>
+
+        <article class="frame-jogo feito wide">
+          <div class="shot"><img class="px" src="img/roca-vila.png" width="1050" height="960" alt="A vila da ilha: o lago com píer e ilhota, a fogueira, a praça com as bancas e o poço, e o cais no mar." loading="lazy"></div>
+          <div class="txt">
+            <small>A vila</small>
+            <strong>No canto da ilha, o que é de todo mundo.</strong>
+            <ul class="tabela long">
+              <li><span>Praça</span><b>a Banca da roça, a dos bichos e a do quintal, o poço e o banco do Bento</b></li>
+              <li><span>Lago</span><b>o píer para pescar, com a vara da Banca da roça: até oito peixes por dia</b></li>
+              <li><span>Pomar</span><b>uma fruta de cada árvore, por pessoa, por dia</b></li>
+              <li><span>Pasto</span><b>a vaca e a ovelha de quem ainda não tem celeiro</b></li>
+            </ul>
+            <p>Chegue perto do balcão e aperte <kbd>Espaço</kbd>. O <kbd>B</kbd> leva até a banca.</p>
           </div>
         </article>
 
         <article class="frame-jogo feito">
-          <div class="shot"><img class="px" src="img/roca-fogueira.png" width="256" height="160" alt="A fogueira com bancos de tronco e duas pessoas sentadas." loading="lazy"></div>
+          <div class="shot">
+            <div class="bichos x4"><figure><img class="px" src="img/bento.png" style="--h:32" alt=""><figcaption>Bento</figcaption></figure></div>
+          </div>
           <div class="txt">
-            <small>Junto</small>
-            <strong>Fogueira e visita.</strong>
-            <p>Sente na fogueira com a squad no fim do dia. Passe no quintal do colega, deixe um recado no livro de visitas e regue a horta dele.</p>
+            <small>História</small>
+            <strong>Uma carta na porta.</strong>
+            <p>Na primeira vez na roça, uma carta e o Bento, o antigo dono da terra, esperam você na porta de casa. Depois, ele conta a história dele no banco da praça, um pedaço por dia.</p>
           </div>
         </article>
       </div>
 
-      <div class="quintal" aria-label="Barra do quintal">
+      <div class="quintal" aria-label="Barra de ferramentas da roça">
         <span class="sel"><b>1</b><img class="px" src="img/t-enxada.png" alt="Enxada"></span>
-        <span><b>2</b><img class="px" src="img/t-regador.png" alt="Regador"></span>
-        <span><b>3</b><img class="px" src="img/t-adubo.png" alt="Adubo"><em>4</em></span>
-        <span><b>4</b><img class="px" src="img/t-semente.png" alt="Semente"><em>12</em></span>
+        <span><b>2</b><img class="px" src="img/t-balde.png" alt="Balde"></span>
+        <span><b>3</b><img class="px" src="img/t-semente.png" alt="Saco de sementes"><em>12</em></span>
+        <span><b>4</b><img class="px" src="img/t-adubo.png" alt="Adubo"><em>3</em></span>
         <span><b>5</b><img class="px" src="img/t-vara.png" alt="Vara de pescar"></span>
-        <span><b>6</b></span>
+        <span><b>6</b><img class="px" src="img/t-foice.png" alt="Foice"></span>
+        <span><b>7</b><img class="px" src="img/t-machado.png" alt="Machado"></span>
+        <span><b>8</b></span>
       </div>
     </div>
   </section>
@@ -1477,58 +1573,68 @@ footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; display: fl
     showFloor(floorAt(p), interacted && current !== null, true);
   }, () => { current = null; showFloor('m', false); });
 
-  // ---- Horta: PR → sementes → plantar → review → água → crescer → colher → moedas.
-  const horta = document.getElementById('horta-scene');
-  const soilDry = document.getElementById('soil-dry');
-  const soilWet = document.getElementById('soil-wet');
-  const plants = [...horta.querySelectorAll('.planta')];
-  const drops = [...horta.querySelectorAll('.gota')];
-  const brilho = document.getElementById('brilho');
-  const hcapT = document.getElementById('hcap-t');
-  const hcapB = document.getElementById('hcap-b');
-  const hSem = document.getElementById('h-sem');
-  const hAgua = document.getElementById('h-agua');
-  const hMoedas = document.getElementById('h-moedas');
-  const STEPS = [
-    [0.15, 'Um PR mergeado.', '+3 sementes'],
-    [0.30, 'Capine e plante.', ''],
-    [0.45, 'Um review feito.', '+2 de água'],
-    [0.76, 'Espere crescer.', 'Sem água, ela só espera.'],
-    [0.88, 'Pronta para colher.', 'Às vezes, dourada.'],
-    [1.01, 'Venda na banca.', '+100 moedas'],
+  // ---- Caixote: PR → caixote → abrir → material → bancada → foice de bronze.
+  const caixa = document.getElementById('caixa-scene');
+  const fatos = [...caixa.querySelectorAll('.fato')];
+  const caixote = document.getElementById('caixote');
+  const conta = document.getElementById('conta');
+  const ganhos = [...document.querySelectorAll('#ganhos span')];
+  const receita = document.getElementById('receita');
+  const fazer = document.getElementById('fazer');
+  const ccapT = document.getElementById('ccap-t');
+  const ccapB = document.getElementById('ccap-b');
+  const cMats = ['madeira', 'pedra', 'ferro', 'cobre'].map((k) => document.getElementById('c-' + k));
+  // Madeira, pedra, ferro e cobre: o que a pessoa tem, o que o caixote dá e o que a foice de bronze custa.
+  const START = [2, 4, 1, 0], GAIN = [8, 6, 3, 1], COST = [4, 0, 3, 1];
+  const CSTEPS = [
+    [0.16, 'Um PR com merge.', '3 ferros e 2 madeiras'],
+    [0.32, 'Uma review feita.', '3 pedras'],
+    [0.48, 'Uma issue de 3 pontos.', '6 madeiras e 3 pedras'],
+    [0.64, 'Tudo espera no caixote.', 'No portão do seu lote.'],
+    [0.80, 'Abra quando quiser.', 'Com sorte, vem cobre.'],
+    [1.01, 'Na bancada, vira ferramenta.', 'Uma foice de bronze.'],
   ];
   const setStat = (el, v) => { const s = String(v); if (el.textContent !== s) el.textContent = s; };
-  function renderHorta(p) {
-    const step = STEPS.find(([end]) => p < end);
-    if (hcapT.textContent !== step[1]) { hcapT.textContent = step[1]; hcapB.textContent = step[2]; }
-    soilDry.style.setProperty('--o', clamp((p - 0.15) / 0.04).toFixed(2));
-    soilWet.style.setProperty('--o', clamp((p - 0.40) / 0.05).toFixed(2));
-    let planted = 0;
-    plants.forEach((el, i) => {
-      const tPlant = 0.19 + i * 0.013;
-      const on = p >= tPlant;
-      if (on) planted++;
-      const grow = clamp((p - 0.46 - i * 0.004) / 0.30);
-      el.style.setProperty('--f', on ? Math.min(6, Math.floor(grow * 6.99)) : 0);
-      const pick = clamp((p - 0.88 - i * 0.008) / 0.04);
-      el.style.setProperty('--o', on ? (1 - pick).toFixed(2) : 0);
-      el.style.setProperty('--lift', (pick * 40).toFixed(1));
+  function renderCaixa(p) {
+    const step = CSTEPS.find(([end]) => p < end);
+    if (ccapT.textContent !== step[1]) { ccapT.textContent = step[1]; ccapB.textContent = step[2]; }
+    let inside = 0;
+    fatos.forEach((el, i) => {
+      const t = 0.16 * i;
+      const fly = ease(clamp((p - t - 0.09) / 0.06));
+      if (fly >= 1) inside++;
+      el.style.setProperty('--in', easeOut(clamp((p - t - 0.01) / 0.05)).toFixed(3));
+      el.style.setProperty('--fly', fly.toFixed(3));
     });
-    drops.forEach((el, i) => {
-      const o = p >= 0.31 + i * 0.006 && p < 0.405 ? 1 : 0;
-      el.style.setProperty('--o', o);
+    const open = clamp((p - 0.64) / 0.04);
+    const make = clamp((p - 0.80) / 0.05);
+    const made = p >= 0.9;
+    setStat(conta, inside);
+    conta.style.setProperty('--o', inside && open < 1 ? 1 : 0);
+    caixote.classList.toggle('cheio', inside === 3 && open === 0);
+    caixote.style.setProperty('--pulse', (1 + 0.1 * Math.sin(open * Math.PI)).toFixed(3));
+    caixote.style.setProperty('--dim', make.toFixed(2));
+    ganhos.forEach((el, i) => {
+      const g = easeOut(clamp((p - 0.65 - i * 0.012) / 0.04));
+      const out = clamp((p - 0.77) / 0.03);
+      el.style.setProperty('--o', (g * (1 - out)).toFixed(2));
+      el.style.setProperty('--lift', (g * 2 + out * 3).toFixed(2));
     });
-    brilho.style.setProperty('--o', p >= 0.79 && p < 0.9 ? 1 : 0);
-    setStat(hSem, (p >= 0.04 ? 15 : 12) - planted);
-    setStat(hAgua, p >= 0.32 ? 6 : 4);
-    setStat(hMoedas, 380 + Math.round(100 * easeOut(clamp((p - 0.9) / 0.07))));
-    hSem.parentElement.classList.toggle('bump', p >= 0.04 && p < 0.15);
-    hAgua.parentElement.classList.toggle('bump', p >= 0.32 && p < 0.45);
-    hMoedas.parentElement.classList.toggle('bump', p >= 0.9);
+    const tick = easeOut(clamp((p - 0.67) / 0.09));
+    cMats.forEach((el, i) => {
+      setStat(el, START[i] + Math.round(GAIN[i] * tick) - (made ? COST[i] : 0));
+      el.parentElement.classList.toggle('bump', p >= 0.67 && p < 0.8);
+      el.parentElement.classList.toggle('gasto', made && COST[i] > 0);
+    });
+    receita.style.setProperty('--o', easeOut(make).toFixed(2));
+    setStat(fazer, made ? 'Feita!' : 'Fazer');
+    fazer.classList.toggle('feita', made);
   }
-  scene(() => renderHorta(clamp((pinned(horta) - 0.04) / 0.92)), () => {
-    renderHorta(0.8);
-    hcapT.textContent = 'PR vira semente, review vira água.'; hcapB.textContent = 'A colheita vira moeda.';
+  scene(() => renderCaixa(clamp((pinned(caixa) - 0.04) / 0.92)), () => {
+    // Parado: os três fatos ao lado do caixote cheio.
+    renderCaixa(0.62);
+    fatos.forEach((el) => { el.style.setProperty('--in', 1); el.style.setProperty('--fly', 0); });
+    ccapT.textContent = 'O trabalho enche o caixote.'; ccapB.textContent = 'A bancada transforma.';
   });
 
   // ---- Modo mini: the window shrinks into the floating mini window.
