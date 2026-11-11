@@ -70,7 +70,7 @@ footer a { color: var(--ink-2); }
 <main class="wrap">
 <p class="eyebrow">Vila</p>
 <h1>Política de privacidade</h1>
-<p class="updated">Atualizada em 1 de novembro de 2026</p>
+<p class="updated">Atualizada em 11 de novembro de 2026</p>
 <p class="lede">O Vila é um escritório virtual em pixel art: o time anda pelo mapa, senta na mesa e conversa por voz com quem está perto. Esta página explica quais dados o Vila usa, para quê, com quem eles aparecem e como pedir para ver, corrigir ou apagar.</p>
 
 <nav class="toc" aria-label="Nesta página">
@@ -112,12 +112,18 @@ footer a { color: var(--ink-2); }
 </ul>
 <h3>Voz, vídeo, tela e chat</h3>
 <ul>
-  <li><strong>Voz, vídeo e tela compartilhada</strong> passam em tempo real pelo servidor de mídia que operamos, só até quem está perto de você ou na mesma sala. <strong>Não gravamos</strong> conversas, vídeo nem tela.</li>
+  <li><strong>Voz, vídeo e tela compartilhada</strong> passam em tempo real pelo servidor de mídia que operamos, só até quem está perto de você ou na mesma sala. Só gravamos quando alguém da empresa, dentro da sala de reunião, liga a gravação (veja abaixo).</li>
   <li><strong>As mensagens do chat</strong> das salas e do auditório ficam só na memória do servidor, para quem chega ver as últimas mensagens. Elas não são salvas no banco de dados e somem quando a sala fecha.</li>
+</ul>
+<h3>Gravação e transcrição das reuniões (só quando alguém liga)</h3>
+<ul>
+  <li><strong>Gravação em vídeo:</strong> só começa quando alguém da empresa, dentro da sala de reunião, liga. Convidado não liga. Todo mundo na sala vê o aviso &ldquo;Gravando&rdquo;. O vídeo (câmeras, tela compartilhada, desenhos e áudio) fica no servidor do Vila por 30 dias e depois é apagado. Só baixa o vídeo quem esteve na sala durante a gravação; convidado não baixa.</li>
+  <li><strong>Transcrição:</strong> também só começa quando alguém liga, e só funciona se a organização ligou a transcrição e colou a própria chave do Google (Gemini). O áudio de quem fala vai para a IA do Google (Gemini), com a chave da organização, e é apagado depois de transcrito. Quando a transcrição não dá certo, o áudio fica até 7 dias. O resumo e o texto ficam guardados e só quem participou da reunião lê. O resumo vai por e-mail, pelo Resend, a quem participou.</li>
 </ul>
 <h3>Integrações (opcionais)</h3>
 <ul>
   <li><strong>GitHub e Linear:</strong> quando o administrador da sua organização liga uma integração e você conecta a sua conta, o Vila recebe o seu usuário nessas ferramentas e alguns fatos do trabalho: um pull request mergeado, um review, uma issue concluída, o CI que voltou ao verde, com o título e o link. Esses fatos viram recompensas no jogo da roça. Para sincronizar, guardamos o token de acesso da integração.</li>
+  <li><strong>Agenda do Google:</strong> vem desligada. Se você conectar nos Ajustes, o Vila lê os seus eventos aceitos (veja a seção 3).</li>
   <li><strong>Spotify (app para Mac e Windows):</strong> vem desligado. Se você ligar em Ajustes, o app lê no seu próprio computador a música que está tocando no Spotify e mostra o nome da faixa e do artista para o seu time, enquanto ela toca. O Vila não acessa a sua conta do Spotify e não pede login nele.</li>
 </ul>
 <h3>App para Mac e Windows</h3>
@@ -127,15 +133,24 @@ footer a { color: var(--ink-2); }
 <p>Quando você escolhe entrar com o Google, o Vila pede apenas as permissões <strong>openid</strong>, <strong>email</strong> e <strong>profile</strong>. Com elas recebemos o seu nome, o seu e-mail, se o e-mail foi verificado, o identificador da sua conta Google e o domínio da conta, quando houver.</p>
 <ul>
   <li>Usamos esses dados <strong>só para fazer o seu login</strong>, criar a sua conta com o seu nome e e-mail e conferir se você pertence à organização que está tentando acessar.</li>
-  <li>O Vila <strong>não acessa</strong> o seu Gmail, Google Drive, Agenda, contatos nem qualquer outro dado da sua conta Google, e não guarda a sua foto do Google.</li>
+  <li>Só com o login, o Vila <strong>não acessa</strong> o seu Gmail, Google Drive, Agenda, contatos nem qualquer outro dado da sua conta Google, e não guarda a sua foto do Google. A Agenda só é lida se você conectar, como explicado abaixo.</li>
   <li>Não vendemos dados do Google, não os usamos para publicidade e não os repassamos a terceiros, a não ser o necessário para operar o serviço ou o que a lei exigir.</li>
 </ul>
 <div class="callout"><p>O uso e a transferência, para qualquer outro aplicativo, de informações recebidas das APIs do Google seguem a <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</p></div>
-<p>Você pode tirar o acesso do Vila à sua conta Google a qualquer momento em <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+<h3>Agenda do Google (opcional)</h3>
+<p>Se você conectar a sua agenda nos Ajustes, o Vila pede o escopo <strong>calendar.events.owned.readonly</strong>, que só permite ler os eventos.</p>
+<ul>
+  <li>O Vila lê os seus eventos aceitos das próximas 24 horas, de 3 em 3 minutos, enquanto você está no Vila.</li>
+  <li>Os eventos servem para três coisas: o seu status &ldquo;Em reunião&rdquo;, os avisos antes da reunião e o card da próxima reunião.</li>
+  <li>Os eventos ficam só na memória do servidor, não no banco de dados, e o título só aparece para você.</li>
+  <li><strong>A exceção:</strong> quando alguém liga a gravação ou a transcrição de uma sala, o título do evento que acontece naquela hora (de quem ligou ou de alguém que está na sala) vira o nome da reunião. Esse nome fica guardado com a reunião e aparece para quem estava na sala.</li>
+</ul>
+<p>Você pode desligar a agenda nos Ajustes ou tirar o acesso do Vila à sua conta Google a qualquer momento em <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
 
 <h2 id="uso">4. Para que usamos</h2>
 <ul>
   <li><strong>Para o Vila funcionar:</strong> entrar, mostrar você no mapa, ligar a voz com quem está perto, guardar a sua mesa e o seu jogo. Base legal: a execução do serviço que você ou a sua organização contratou (art. 7º, V, da LGPD).</li>
+  <li><strong>Para a agenda, a gravação e a transcrição,</strong> que só funcionam quando você conecta a agenda ou alguém liga a gravação ou a transcrição na sala.</li>
   <li><strong>Para as integrações e o Spotify,</strong> que você ou o administrador escolhem ligar. Base legal: o seu consentimento, que pode ser retirado a qualquer momento desligando a integração (art. 7º, I).</li>
   <li><strong>Para manter o serviço seguro e estável:</strong> evitar abuso, investigar falhas e fazer cópias de segurança. Base legal: o nosso legítimo interesse (art. 7º, IX).</li>
 </ul>
@@ -148,6 +163,8 @@ footer a { color: var(--ink-2); }
 <ul>
   <li><strong>Provedores de infraestrutura</strong> que hospedam os servidores e o banco de dados do Vila, só para operar o serviço. Os servidores podem ficar fora do Brasil; nesse caso a transferência segue o que a LGPD pede para transferências internacionais.</li>
   <li><strong>GitHub e Linear</strong>, só quando a integração está ligada, para trazer os fatos do trabalho.</li>
+  <li><strong>Google (Gemini)</strong>, só quando alguém liga a transcrição: recebe o áudio de quem fala, para transcrever, com a chave da organização.</li>
+  <li><strong>Resend</strong>, que envia o e-mail com o resumo da reunião a quem participou.</li>
   <li><strong>Autoridades</strong>, quando a lei exigir.</li>
 </ul>
 <p>Fora isso, não compartilhamos os seus dados pessoais com ninguém.</p>
@@ -158,6 +175,10 @@ footer a { color: var(--ink-2); }
   <li><strong>Títulos dos fatos do GitHub e do Linear:</strong> 30 dias.</li>
   <li><strong>Sessões:</strong> expiram 30 dias depois do último uso, ou quando você sai.</li>
   <li><strong>Chat:</strong> não é guardado no banco de dados.</li>
+  <li><strong>Vídeo das gravações:</strong> 30 dias, e depois é apagado.</li>
+  <li><strong>Áudio da transcrição:</strong> até ser transcrito; quando a transcrição não dá certo, até 7 dias.</li>
+  <li><strong>Texto e resumo das reuniões</strong> (e o nome da reunião): enquanto a organização usar o Vila. Hoje não há exclusão automática; se você pedir, apagamos.</li>
+  <li><strong>Eventos da agenda:</strong> só na memória do servidor, não são guardados.</li>
   <li><strong>Cópias de segurança:</strong> uma por dia, guardadas por 14 dias e depois apagadas.</li>
 </ul>
 

@@ -70,7 +70,7 @@ footer a { color: var(--ink-2); }
 <main class="wrap">
 <p class="eyebrow">Vila</p>
 <h1>Privacy Policy</h1>
-<p class="updated">Last updated November 1, 2026</p>
+<p class="updated">Last updated November 11, 2026</p>
 <p class="lede">Vila is a pixel-art virtual office: the team walks around a map, sits at their desks and talks by voice with whoever is nearby. This page explains what data Vila uses, why, who can see it, and how to ask us to access, correct or delete it. The <a href="../privacidade/" hreflang="pt-BR">Portuguese version</a> is the reference text.</p>
 
 <nav class="toc" aria-label="On this page">
@@ -112,12 +112,18 @@ footer a { color: var(--ink-2); }
 </ul>
 <h3>Voice, video, screen and chat</h3>
 <ul>
-  <li><strong>Voice, video and shared screens</strong> are relayed in real time by the media server we operate, only to people near you or in the same room. <strong>We do not record</strong> calls, video or screens.</li>
+  <li><strong>Voice, video and shared screens</strong> are relayed in real time by the media server we operate, only to people near you or in the same room. We only record when someone from the company, inside a meeting room, turns recording on (see below).</li>
   <li><strong>Chat messages</strong> in rooms and in the auditorium are kept only in the server's memory, so people who join can see the latest messages. They are not saved to the database and disappear when the room closes.</li>
+</ul>
+<h3>Meeting recording and transcription (only when someone turns them on)</h3>
+<ul>
+  <li><strong>Video recording:</strong> it only starts when someone from the company, inside a meeting room, turns it on. Guests cannot. Everyone in the room sees the &ldquo;Recording&rdquo; notice. The video (cameras, shared screen, drawings and audio) is kept on Vila's server for 30 days and then deleted. Only people who were in the room during the recording can download it; guests cannot.</li>
+  <li><strong>Transcription:</strong> it also only starts when someone turns it on, and only works if the organization has enabled transcription and pasted its own Google (Gemini) key. The audio of whoever is speaking is sent to Google's AI (Gemini), using the organization's key, and is deleted once transcribed. When transcription fails, the audio is kept for up to 7 days. The summary and the text are stored and can be read only by people who took part in the meeting. The summary is emailed, through Resend, to the people who took part.</li>
 </ul>
 <h3>Integrations (optional)</h3>
 <ul>
   <li><strong>GitHub and Linear:</strong> when your organization's administrator enables an integration and you connect your account, Vila receives your username on that tool and a few work events: a merged pull request, a review, a completed issue, CI going back to green, with their title and link. These events become rewards in the farm game. To sync, we store the integration's access token.</li>
+  <li><strong>Google Calendar:</strong> off by default. If you connect it in Settings, Vila reads your accepted events (see section 3).</li>
   <li><strong>Spotify (Mac and Windows app):</strong> off by default. If you turn it on in Settings, the app reads, on your own computer, the song playing in Spotify and shows the track and artist name to your team while it plays. Vila does not access your Spotify account and never asks you to sign in to it.</li>
 </ul>
 <h3>Mac and Windows app</h3>
@@ -127,15 +133,24 @@ footer a { color: var(--ink-2); }
 <p>When you choose to sign in with Google, Vila requests only the <strong>openid</strong>, <strong>email</strong> and <strong>profile</strong> scopes. With them we receive your name, your email address, whether it is verified, your Google account identifier and your account's domain, if any.</p>
 <ul>
   <li>We use this data <strong>only to sign you in</strong>, create your account with your name and email, and check that you belong to the organization you are trying to access.</li>
-  <li>Vila <strong>does not access</strong> your Gmail, Google Drive, Calendar, contacts or any other data in your Google account, and does not store your Google profile photo.</li>
+  <li>With sign-in alone, Vila <strong>does not access</strong> your Gmail, Google Drive, Calendar, contacts or any other data in your Google account, and does not store your Google profile photo. Calendar is read only if you connect it, as explained below.</li>
   <li>We do not sell Google user data, do not use it for advertising, and do not transfer it to third parties except as needed to run the service or as required by law.</li>
 </ul>
 <div class="callout"><p>Vila's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p></div>
-<p>You can remove Vila's access to your Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+<h3>Google Calendar (optional)</h3>
+<p>If you connect your calendar in Settings, Vila requests the <strong>calendar.events.owned.readonly</strong> scope, which only allows reading events.</p>
+<ul>
+  <li>Vila reads your accepted events for the next 24 hours, every 3 minutes, while you are in Vila.</li>
+  <li>The events are used for three things: your &ldquo;In a meeting&rdquo; status, the heads-up before a meeting and the next-meeting card.</li>
+  <li>Events are kept only in the server's memory, not in the database, and the title is shown only to you.</li>
+  <li><strong>The exception:</strong> when someone turns on recording or transcription in a room, the title of the event happening at that time (yours, if you turned it on, or that of someone in the room) becomes the meeting's name. That name is stored with the meeting and shown to the people who were in the room.</li>
+</ul>
+<p>You can turn the calendar off in Settings, or remove Vila's access to your Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
 
 <h2 id="use">4. How we use it</h2>
 <ul>
   <li><strong>To run Vila:</strong> sign you in, show you on the map, connect your voice with people nearby, and keep your desk and your game. Legal basis: performance of the service you or your organization signed up for (LGPD art. 7, V).</li>
+  <li><strong>For the calendar, recording and transcription,</strong> which only work when you connect your calendar or someone turns recording or transcription on in the room.</li>
   <li><strong>For integrations and Spotify,</strong> which you or your administrator choose to enable. Legal basis: your consent, which you can withdraw at any time by turning the integration off (art. 7, I).</li>
   <li><strong>To keep the service secure and stable:</strong> prevent abuse, investigate failures and make backups. Legal basis: our legitimate interest (art. 7, IX).</li>
 </ul>
@@ -148,6 +163,8 @@ footer a { color: var(--ink-2); }
 <ul>
   <li><strong>Infrastructure providers</strong> that host Vila's servers and database, only to operate the service. Servers may be located outside Brazil; in that case the transfer follows the LGPD rules for international transfers.</li>
   <li><strong>GitHub and Linear</strong>, only when the integration is on, to bring in work events.</li>
+  <li><strong>Google (Gemini)</strong>, only when someone turns transcription on: it receives the audio of whoever is speaking, to transcribe it, using the organization's key.</li>
+  <li><strong>Resend</strong>, which sends the meeting summary email to the people who took part.</li>
   <li><strong>Authorities</strong>, when required by law.</li>
 </ul>
 <p>Other than that, we do not share your personal data with anyone.</p>
@@ -158,6 +175,10 @@ footer a { color: var(--ink-2); }
   <li><strong>Titles of GitHub and Linear events:</strong> 30 days.</li>
   <li><strong>Sessions:</strong> expire 30 days after last use, or when you sign out.</li>
   <li><strong>Chat:</strong> not stored in the database.</li>
+  <li><strong>Recording video:</strong> 30 days, then deleted.</li>
+  <li><strong>Transcription audio:</strong> until it is transcribed; when transcription fails, up to 7 days.</li>
+  <li><strong>Meeting text and summary</strong> (and the meeting name): as long as the organization uses Vila. There is no automatic deletion today; if you ask, we delete it.</li>
+  <li><strong>Calendar events:</strong> only in the server's memory, not stored.</li>
   <li><strong>Backups:</strong> one per day, kept for 14 days and then deleted.</li>
 </ul>
 
